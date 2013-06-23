@@ -26,11 +26,17 @@ $sudo vi /etc/apparmor.d/usr.sbin.mysqld
 ```
 $sudo /etc/init.d/apparmor reload
 ```
+###给/home/mysql文件添加root权限
+```
+sudo chmod -（代表类型）×××（所有者）×××（组用户）×××（其他用户）
+```
+
 ###重启MySQL服务
 ```
 $sudo /etc/init.d/mysql start
 ```
 
 ###注意
+* 整个操作不能在root用户下,只能在其他用户下，因为root用户设置的权限，其他用户用不了
 * 数据库新位置需要绝对路径，不能做软链接
 * 数据文件夹的用户组为mysql，mysql的根目录权限需要为root权限
