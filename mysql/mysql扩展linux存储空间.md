@@ -67,3 +67,38 @@ InnoDB: Could not open or create data files.
 ```
 
 所以，设置为 innodb_data_file_path = /ibdata/ibdata1: 988M 就可以避免上述错误出现。
+
+
+Ubuntu就开始使用一种安全软件叫做AppArmor，这个安全软件会在你的文件系统中创建一个允许应用程序访问的区域（专业术语：应 用程序访问控制）。如果不为MySQL修改AppArmor配置文件，永远也无法为新设置的数据库存储位置启动数据库服务。
+
+###配置AppArmor
+```
+$sudo vi /etc/apparmor.d/usr.sbin.mysqld 
+```
+添加上下面内容
+```
+/disk2/ r,
+/disk2/** rwk,
+```
+###保存后退出，执行命令
+```
+$sudo /etc/init.d/apparmor reload
+```
+###给/home/mysql文件添加root权限
+```
+sudo chmod -（代表类型）×××（所有者）×××（组用户）×××（其他用户）
+
+sudo chown -R mysql:mysql /disk2/
+
+
+```
+
+###重启MySQL服务
+```
+$sudo /etc/init.d/mysql start
+```
+
+###注意
+* 整个操作不能在root用户下,只能在其他用户下，因为root用户设置的权限，其他用户用不了
+* 数据库新位置需要绝对路径，不能做软链接
+* 数据文件夹的用户组为mysql，mysql的根目录权限需要为root权限
