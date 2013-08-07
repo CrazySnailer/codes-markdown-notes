@@ -49,3 +49,7 @@ tmpfs                 2.0G     0  2.0G   0% /dev/shm
 27M     work/testing/logs/show.log
 
 ```
+
+###参考
+
+http://www.cnblogs.com/benio/archive/2010/10/13/1849946.html
