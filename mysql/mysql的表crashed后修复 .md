@@ -8,12 +8,12 @@ mysql的表在大量访问和写入环境下有可能损坏，报错如下：
 ```
 
 解决办法是用myisamchk命令进行修复。
-在ubuntu8.10中，mysql的数据存放的路径在/var/lib/mysql,加入有个数据库叫snort，snort中有个表acid_event损坏了,
-那么在/var/lib/mysql/snort/下有个文件叫acid_event.MYI,修复办法是
+在ubuntu8.10中，mysql的数据存放的路径在/var/lib/mysql(我的是/home/mysql),假如有个数据库叫twittercrawler，twittercrawler中有个表tweet_info损坏了,
+那么在/var/lib/mysql/twittercrawler/下有个文件叫tweet_info.MYI,修复办法是
 
 ```
-    cd /var/lib/mysql/snort/
-    myisamchk -c -r acid_event.MYI
+    cd /var/lib/mysql/twittercrawler/
+    myisamchk -c -r tweet_info.MYI
 ```
 
 错误产生原因，有人说是频繁查询和更新表造成的索引错误。还有说法为是MYSQL数据库因为某种原因而受到了损坏，
@@ -24,4 +24,4 @@ mysql的表在大量访问和写入环境下有可能损坏，报错如下：
 ###备注
 
 要进入数据库表目录，要在root权限下操作。
-上述方法不好用时可以按照提示进行恢复操作。
+上述方法不好用时可以按照提示进行恢复操作。例如 myisamchk -o -f tweet_info.MYI
