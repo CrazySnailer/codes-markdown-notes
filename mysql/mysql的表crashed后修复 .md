@@ -32,9 +32,11 @@ MySQL数据库出错:Table ... is marked as crashed and should be repaired
 
 用“REPAIR TABLE table_name;”命令修复
 
-#登录mysql进入报错的数据库
+登录mysql进入报错的数据库
 
+```
 mysql> use twittercrawler;
 Database changed
 
 mysql> repair table tweet_info;
+```
