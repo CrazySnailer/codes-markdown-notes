@@ -25,3 +25,16 @@ mysql的表在大量访问和写入环境下有可能损坏，报错如下：
 
 要进入数据库表目录，要在root权限下操作。
 上述方法不好用时可以按照提示进行恢复操作。例如 myisamchk -o -f tweet_info.MYI
+
+
+###另外一种方式
+MySQL数据库出错:Table ... is marked as crashed and should be repaired
+
+用“REPAIR TABLE table_name;”命令修复
+
+#登录mysql进入报错的数据库
+
+mysql> use twittercrawler;
+Database changed
+
+mysql> repair table tweet_info;
